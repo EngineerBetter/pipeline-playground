@@ -1,3 +1,11 @@
+---
+resource_types:
+  - name: terraform
+    type: registry-image
+    source:
+      repository: ljfranklin/terraform-resource
+      tag: "1.0.10"
+
 resources:
   - name: playground-repo
     type: git
@@ -14,4 +22,12 @@ jobs:
         trigger: true
       - set_pipeline: self
         file: playground-repo/ci/pipeline.yaml
+  - name: deploy-terraform
+    serial: true
+    plan:
+      - get: playground-repo
+        passed: [set-pipeline]
+        trigger: true
+
+
 
