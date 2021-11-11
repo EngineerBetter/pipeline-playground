@@ -13,6 +13,7 @@ resources:
     source:
       uri: https://github.com/prycey77/pipeline-playground
       branch: main
+
   - name: project
     type: terraform
     icon: terraform
