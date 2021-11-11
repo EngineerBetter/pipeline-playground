@@ -36,8 +36,8 @@ jobs:
         trigger: true
       - set_pipeline: self
         file: playground-repo/ci/pipeline.yaml
-        var_files:
-          - vars/playground_vars.yaml
+        # var_files:
+        #   - vars/playground_vars.yaml
 
   - name: configure-project
     serial: true
