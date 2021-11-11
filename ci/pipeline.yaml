@@ -13,7 +13,20 @@ resources:
     source:
       uri: https://github.com/prycey77/pipeline-playground
       branch: main
-
+  - name: project
+    type: terraform
+    icon: terraform
+    source:
+      env_name: ((env_name))
+      backend_type: gcs
+      backend_config:
+        bucket: ((backend_bucket_name))
+        prefix: tf
+      env:
+        GOOGLE_CREDENTIALS: ((gcp_credentials_json))
+      vars:
+        project_id: ((project_id))
+        region: ((region))
 jobs:
   - name: set-pipeline
     serial: true
@@ -22,12 +35,17 @@ jobs:
         trigger: true
       - set_pipeline: self
         file: playground-repo/ci/pipeline.yaml
-  - name: deploy-terraform
+        var_files:
+          - playground/vars/playground_vars.yaml
+  - name: configure-project
     serial: true
     plan:
       - get: playground-repo
         passed: [set-pipeline]
         trigger: true
+      - put: project
+        params:
+          terraform_source: playground/tf
 
 
 
