@@ -36,16 +36,14 @@ jobs:
       - set_pipeline: self
         file: playground-repo/ci/pipeline.yaml
         var_files:
-          - playground/vars/playground_vars.yaml
+          - playground-repo/vars/playground_vars.yaml
+
   - name: configure-project
     serial: true
     plan:
       - get: playground-repo
-        passed: [set-pipeline]
         trigger: true
+        passed: [set-pipeline]
       - put: project
         params:
           terraform_source: playground/tf
-
-
-
