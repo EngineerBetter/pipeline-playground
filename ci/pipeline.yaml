@@ -46,4 +46,4 @@ jobs:
         passed: [set-pipeline]
       - put: project
         params:
-          terraform_source: playground/tf
+          terraform_source: playground-repo/tf
