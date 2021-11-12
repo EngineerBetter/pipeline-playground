@@ -11,8 +11,9 @@ resources:
     type: git
     icon: github
     source:
-      uri: git@github.com:prycey77/pipeline-playground.git
+      uri: git@github.com:EngineerBetter/pipeline-playground.git
       branch: main
+      private_key: ((github_private_key))
 
   - name: project
     type: terraform
@@ -39,6 +40,7 @@ jobs:
         file: playground-repo/ci/pipeline.yaml
         var_files:
           - playground-repo/vars/playground_vars.yaml
+
   - name: configure-project
     serial: true
     plan:
