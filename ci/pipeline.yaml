@@ -18,7 +18,7 @@ resources:
     type: terraform
     icon: terraform
     source:
-      # env_name: ((env_name))
+      env_name: playground-dev
       backend_type: gcs
       backend_config:
         bucket: my-bucket
@@ -36,8 +36,6 @@ jobs:
         trigger: true
       - set_pipeline: self
         file: playground-repo/ci/pipeline.yaml
-        # var_files:
-        #   - vars/playground_vars.yaml
 
   - name: configure-project
     serial: true
