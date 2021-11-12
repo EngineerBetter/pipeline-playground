@@ -1,9 +1,4 @@
 terraform {
-  backend "gcs" {
-      bucket = "playground-bucket-bao"
-      prefix = "terraform/state"
-      credentials = "creds.json"
-  }
 }
 
 provider "google" {
