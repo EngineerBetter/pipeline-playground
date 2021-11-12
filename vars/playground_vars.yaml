@@ -1,4 +1,4 @@
 env_name: playground-beach
 backend_bucket_name: playground-bucket-bao
 project_id: playground-beach
-region: europe-west2
+region: us
