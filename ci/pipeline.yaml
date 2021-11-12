@@ -1,52 +1,52 @@
 ---
 resource_types:
-  - name: terraform
-    type: registry-image
-    source:
-      repository: ljfranklin/terraform-resource
-      tag: "1.0.10"
+- name: terraform
+  type: registry-image
+  source:
+    repository: ljfranklin/terraform-resource
+    tag: "1.0.10"
 
 resources:
-  - name: playground-repo
-    type: git
-    icon: github
-    source:
-      uri: git@github.com:EngineerBetter/pipeline-playground.git
-      branch: main
-      private_key: ((github_private_key))
+- name: playground-repo
+  type: git
+  icon: github
+  source:
+    uri: git@github.com:EngineerBetter/pipeline-playground.git
+    branch: main
+    private_key: ((github_private_key))
 
-  - name: project
-    type: terraform
-    icon: terraform
-    source:
-      env_name: ((env_name))
-      backend_type: gcs
-      backend_config:
-        bucket: ((backend_bucket_name))
-        prefix: tf
-      env:
-        GOOGLE_CREDENTIALS: ((gcp_credentials_json))
-      vars:
-        project_id: ((project_id))
-        region: ((region))
+- name: project
+  type: terraform
+  icon: terraform
+  source:
+    env_name: ((env_name))
+    backend_type: gcs
+    backend_config:
+      bucket: ((backend_bucket_name))
+      prefix: tf
+    env:
+      GOOGLE_CREDENTIALS: ((gcp_credentials_json))
+    vars:
+      project_id: ((project_id))
+      region: ((region))
 
 jobs:
-  - name: set-pipeline
-    serial: true
-    plan:
-      - get: playground-repo
-        trigger: true
-      - set_pipeline: playground
-        file: playground-repo/ci/pipeline.yaml
-        var_files:
-          - playground-repo/vars/playground_vars.yaml
+- name: set-pipeline
+  serial: true
+  plan:
+    - get: playground-repo
+      trigger: true
+    - set_pipeline: playground
+      file: playground-repo/ci/pipeline.yaml
+      var_files:
+        - playground-repo/vars/playground_vars.yaml
 
-  - name: configure-project
-    serial: true
-    plan:
-      - get: playground-repo
-        trigger: true
-        passed: [set-pipeline]
-      - put: project
-        params:
-          terraform_source: playground-repo/tf
+- name: configure-project
+  serial: true
+  plan:
+    - get: playground-repo
+      trigger: true
+      passed: [set-pipeline]
+    - put: project
+      params:
+        terraform_source: playground-repo/tf
