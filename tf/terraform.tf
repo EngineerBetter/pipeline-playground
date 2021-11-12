@@ -7,7 +7,7 @@ provider "google" {
   region  = var.region
 }
 
-resource "google_storage_bucket" "bao-bucket" {
+data "google_storage_bucket" "bao-bucket" {
   name = "playground-bucket-bao"
-  location = "eu-west2"
+  # location = "eu-west2"
   }
