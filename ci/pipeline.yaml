@@ -18,16 +18,16 @@ resources:
     type: terraform
     icon: terraform
     source:
-      env_name: ((env_name))
+      # env_name: ((env_name))
       backend_type: gcs
       backend_config:
-        bucket: ((backend_bucket_name))
+        bucket: my-bucket
         prefix: tf
       env:
         GOOGLE_CREDENTIALS: ((gcp_credentials_json))
       vars:
-        project_id: ((project_id))
-        region: ((region))
+        project_id: playground
+        region: europe-west2
 jobs:
   - name: set-pipeline
     serial: true

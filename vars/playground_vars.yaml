@@ -1,4 +1,4 @@
-env_name: play
+env_name: playground
 backend_bucket_name: playground-bucket
 project_id: playground-dev
 region: europe-west2
