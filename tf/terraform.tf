@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    # bucket = "playground-bucket-bao"
+    bucket = "playground-bucket-bao"
   }
 }
 
