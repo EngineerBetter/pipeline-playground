@@ -1,5 +1,8 @@
 terraform {
-  backend "gcs" {}
+  backend "gcs" {
+    bucket = "playground-bucket-bao"
+    prefix = "terraform/state"
+  }
 }
 
 provider "google" {
@@ -7,7 +10,7 @@ provider "google" {
   region  = var.region
 }
 
-data "google_storage_bucket" "bao-bucket" {
-  name = "playground-bucket-bao"
-  # location = "eu-west2"
-  }
+# data "google_storage_bucket" "bao-bucket" {
+#   name = "playground-bucket-bao"
+#   # location = "eu-west2"
+#   }
