@@ -13,7 +13,6 @@ resources:
     source:
       uri: git@github.com:prycey77/pipeline-playground.git
       branch: main
-      private_key: ((github_private_key))
 
   - name: project
     type: terraform
