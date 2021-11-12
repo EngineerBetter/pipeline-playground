@@ -11,8 +11,9 @@ resources:
     type: git
     icon: github
     source:
-      uri: https://github.com/prycey77/pipeline-playground
+      uri: git@github.com:prycey77/pipeline-playground.git
       branch: main
+      private_key: ((github_private_key))
 
   - name: project
     type: terraform
@@ -28,13 +29,14 @@ resources:
       vars:
         project_id: ((project_id))
         region: ((region))
+
 jobs:
   - name: set-pipeline
     serial: true
     plan:
       - get: playground-repo
         trigger: true
-      - set_pipeline: self
+      - set_pipeline: playground
         file: playground-repo/ci/pipeline.yaml
         var_files:
           - playground-repo/vars/playground_vars.yaml
