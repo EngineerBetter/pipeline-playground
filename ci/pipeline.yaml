@@ -37,7 +37,7 @@ jobs:
       - set_pipeline: self
         file: playground-repo/ci/pipeline.yaml
         var_files:
-          - playground/vars/playground_vars.yaml
+          - playground-repo/vars/playground_vars.yaml
   - name: configure-project
     serial: true
     plan:
