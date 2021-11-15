@@ -30,6 +30,21 @@ resources:
       project_id: ((project_id))
       region: ((region))
 
+- name: my-lovely-bucket
+  type: terraform
+  icon: terraform
+  source:
+    env_name: ((env_name))
+    backend_type: gcs
+    backend_config:
+      bucket: ((backend_bucket_name))
+      prefix: storage
+    env:
+      GOOGLE_CREDENTIALS: ((gcp_credentials_json))
+    vars:
+      project_id: ((project_id))
+      region: ((region))
+
 jobs:
 - name: set-pipeline
   serial: true
@@ -50,3 +65,13 @@ jobs:
     - put: project
       params:
         terraform_source: playground-repo/tf
+
+- name: create-bucket
+  serial: true
+  plan:
+    - get: playground-repo
+      trigger: true
+      passed: [configure-project]
+    - put: my-lovely-bucket
+      params:
+        terraform_source: playground-repo/tf/storage
