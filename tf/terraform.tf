@@ -8,5 +8,6 @@ provider "google" {
 }
 
 resource "google_storage_bucket" "my-lovely-bucket" {
-  name = "my-loveley-bucket"
+  name     = "my-loveley-bucket"
+  location = var.region
 }
