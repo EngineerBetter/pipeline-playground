@@ -74,4 +74,4 @@ jobs:
       passed: [configure-project]
     - put: my-lovely-bucket
       params:
-        terraform_source: playground-repo/tf/storage
+        terraform_source: playground-repo/tf
