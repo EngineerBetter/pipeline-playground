@@ -19,7 +19,7 @@ resources:
   type: terraform
   icon: terraform
   source:
-    # env_name: ((env_name))
+    env_name: ((env_name))
     backend_type: gcs
     backend_config:
       bucket: ((backend_bucket_name))
