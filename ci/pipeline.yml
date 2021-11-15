@@ -52,7 +52,7 @@ jobs:
     - get: playground-repo
       trigger: true
     - set_pipeline: playground
-      file: playground-repo/ci/pipeline.yaml
+      file: playground-repo/ci/pipeline.yml
       var_files:
         - playground-repo/vars/playground_vars.yaml
 
